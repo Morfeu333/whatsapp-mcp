@@ -1,0 +1,24 @@
+[Unit]
+Description=WhatsApp MCP Bridge
+After=network.target
+Documentation=https://github.com/lharries/whatsapp-mcp
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory={{PROJECT_DIR}}/whatsapp-bridge
+ExecStart={{PROJECT_DIR}}/whatsapp-bridge/whatsapp-bridge
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=whatsapp-bridge
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
